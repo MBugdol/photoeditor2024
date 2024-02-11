@@ -1,0 +1,99 @@
+import QtQuick
+import QtQuick.Controls
+import QtQuick.Layouts
+
+MenuBar {
+    id: root
+
+    AppMenu {
+        id: fileMenu
+
+        title: qsTr("&File")
+
+        AppMenuItem {
+            text: qsTr("&Open")
+        }
+
+        AppMenuItem {
+            text: qsTr("&Save")
+        }
+
+        AppMenuItem {
+            text: qsTr("Save &as")
+        }
+
+        AppMenuItem {
+            text: qsTr("&Close")
+        }
+
+        MenuSeparator {
+        }
+
+        AppMenuItem {
+            text: qsTr("&Quit")
+            onTriggered: Qt.quit()
+        }
+
+    }
+    // fileMenu
+
+    AppMenu {
+        id: viewMenu
+
+        title: qsTr("&View")
+
+        AppMenuItem {
+            text: qsTr("Zoom &in")
+        }
+
+        AppMenuItem {
+            text: qsTr("Zoom &out")
+        }
+
+    }
+    // viewMenu
+
+    component AppMenu: Menu {
+        // no matches - pass the event
+        // exact match - trigger the action
+        // multiple matches - move cursor onto the next one
+
+        function handleKeyboardEvent(event) {
+            if (event.text === "" || currentIndex === -1) {
+                event.accepted = false;
+                return ;
+            }
+            // find all menu entries with this shortcut assigned
+            let matches = [];
+            for (let i = 0; i < count; ++i) {
+                // move the whole iteration over by `currentIndex` entries
+                let adjusted = (currentIndex + i + 1) % count;
+                if (itemAt(adjusted).shortcut === event.text)
+                    matches.push(adjusted);
+
+            }
+            if (matches.length === 0)
+                event.accepted = false;
+            else if (matches.length === 1)
+                itemAt(matches[0]).triggered();
+            else
+                currentIndex = matches[0];
+        }
+
+        onOpened: currentIndex = 0
+    }
+    // AppMenu component
+
+    component AppMenuItem: MenuItem {
+        property string shortcut: {
+            let i = text.indexOf("&");
+            return (i !== -1 && i < text.length - 1) ? text.charAt(i + 1).toLowerCase() : "";
+        }
+
+        Keys.onPressed: (event) => {
+            return menu.handleKeyboardEvent(event);
+        }
+    }
+    // AppMenuItem component
+
+}

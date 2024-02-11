@@ -5,10 +5,11 @@ import QtQuick.Controls.Material
 ApplicationWindow {
     id: root
 
-    title: qsTr('Photo editor')
+    title: qsTr("Photo editor")
     width: 400
     height: 400
     visible: true
+    Material.theme: Material.System
 
     Flickable {
         id: mainFlickable
@@ -50,6 +51,9 @@ ApplicationWindow {
             blocking: false
         }
 
+    }
+
+    header: AppMenuBar {
     }
 
 }
