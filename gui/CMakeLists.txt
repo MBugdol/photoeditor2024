@@ -7,4 +7,7 @@ qt6_add_qml_module(PhotoEditorGui
     QML_FILES
         main.qml
         AppMenuBar.qml
+    SOURCES
+        editorstate.h
+        editorstate.cpp
 )

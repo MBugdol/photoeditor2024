@@ -18,6 +18,7 @@ ApplicationWindow {
         clip: true
         contentWidth: workspace.width
         contentHeight: workspace.height
+        boundsBehavior: Flickable.StopAtBounds
 
         Item {
             id: workspace
@@ -32,6 +33,8 @@ ApplicationWindow {
                 anchors.centerIn: parent
                 width: 300
                 height: width
+
+                scale: EditorState.zoom / 100
             }
 
         }
@@ -40,17 +43,10 @@ ApplicationWindow {
             id: workspaceZoom
 
             acceptedModifiers: Qt.ControlModifier
-            target: image
-            property: "width"
+            onWheel: (event) => {
+                EditorState.zoom += Math.sign(event.angleDelta.y) * 5
+            }
         }
-
-        WheelHandler {
-            id: workspaceScroll
-
-            acceptedModifiers: Qt.NoModifier
-            blocking: false
-        }
-
     }
 
     header: AppMenuBar {
