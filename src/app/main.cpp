@@ -1,16 +1,8 @@
-#include <QGuiApplication>
-#include <QQmlApplicationEngine>
+#include "editorapplication.h"
+
+#include <QQmlContext>
 
 int main(int argc, char** argv) {
-  QGuiApplication app(argc, argv);
-  QQmlApplicationEngine engine;
-  const QUrl url{u"qrc:/editor/gui/main.qml"_qs};
-
-  QObject::connect(
-      &engine, &QQmlApplicationEngine::objectCreationFailed,
-      QCoreApplication::instance(),
-      []() { QCoreApplication::exit(1); }, Qt::QueuedConnection);
-  engine.load(url);
-
+  photoeditor::EditorApplication app(argc, argv);
   return app.exec();
 }

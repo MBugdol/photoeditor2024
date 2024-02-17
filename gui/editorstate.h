@@ -14,8 +14,11 @@ class EditorState : public QObject {
   Q_INVOKABLE void setZoom(int zoom);
   Q_INVOKABLE int getZoom() const;
 
+  Q_INVOKABLE void centerImage();
+
  signals:
   void zoomChanged();
+  void imageCenteringRequested();
 
  private:
   int _zoom = 100;

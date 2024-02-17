@@ -14,11 +14,25 @@ ApplicationWindow {
     Flickable {
         id: mainFlickable
 
+        function center() {
+            contentX = (contentWidth - width) / 2;
+            contentY = (contentHeight - height) / 2;
+        }
+
         anchors.fill: parent
         clip: true
         contentWidth: workspace.width
         contentHeight: workspace.height
         boundsBehavior: Flickable.StopAtBounds
+        Component.onCompleted: center()
+
+        Connections {
+            function onImageCenteringRequested() {
+                mainFlickable.center();
+            }
+
+            target: EditorState
+        }
 
         Item {
             id: workspace
@@ -26,14 +40,12 @@ ApplicationWindow {
             width: 2 * mainFlickable.width
             height: 2 * mainFlickable.height
 
-            Rectangle {
+            Image {
                 id: image
 
-                color: "red"
+                cache: false
+                fillMode: Image.Pad
                 anchors.centerIn: parent
-                width: 300
-                height: width
-
                 scale: EditorState.zoom / 100
             }
 
@@ -44,9 +56,10 @@ ApplicationWindow {
 
             acceptedModifiers: Qt.ControlModifier
             onWheel: (event) => {
-                EditorState.zoom += Math.sign(event.angleDelta.y) * 5
+                EditorState.zoom += Math.sign(event.angleDelta.y) * 5;
             }
         }
+
     }
 
     header: AppMenuBar {

@@ -44,17 +44,22 @@ MenuBar {
 
         AppMenuItem {
             text: qsTr("&Center image")
+            onTriggered: EditorState.centerImage()
         }
 
         AppMenu {
             title: qsTr("Set &zoom")
+
             Repeater {
                 model: [25, 50, 100, 200, 400]
+
                 AppMenuItem {
                     text: modelData + "%"
                     onTriggered: EditorState.zoom = modelData
                 }
+
             }
+
         }
 
     }

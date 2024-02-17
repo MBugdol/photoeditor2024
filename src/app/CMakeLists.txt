@@ -4,4 +4,6 @@ set(SOURCEDIR ${CMAKE_CURRENT_SOURCE_DIR})
 
 target_sources(PhotoEditorApp PRIVATE
     ${SOURCEDIR}/main.cpp
+    ${SOURCEDIR}/editorapplication.cpp
+    ${SOURCEDIR}/editorapplication.h
 )

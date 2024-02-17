@@ -13,3 +13,7 @@ void EditorState::setZoom(const int zoom) {
 }
 
 int EditorState::getZoom() const { return _zoom; }
+
+void EditorState::centerImage() {
+  emit imageCenteringRequested();
+}
