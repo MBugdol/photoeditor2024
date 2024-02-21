@@ -10,4 +10,6 @@ qt6_add_qml_module(PhotoEditorGui
     SOURCES
         editorstate.h
         editorstate.cpp
+    RESOURCES
+        img/qt_logo.svg
 )

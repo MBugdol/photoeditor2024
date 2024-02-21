@@ -43,6 +43,7 @@ ApplicationWindow {
             Image {
                 id: image
 
+                source: "qrc:/editor/gui/img/qt_logo.svg"
                 cache: false
                 fillMode: Image.Pad
                 anchors.centerIn: parent
