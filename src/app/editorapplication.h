@@ -4,6 +4,7 @@
 #include <memory>
 
 #include "backend.h"
+#include "project/projectimageprovider.h"
 
 namespace photoeditor {
 
@@ -36,6 +37,7 @@ class EditorApplication : public QApplication {
 
   std::unique_ptr<QQmlApplicationEngine> m_engine;  //< app's qml engine
   Backend m_backend;
+  ProjectImageProvider m_project_img_provider{m_backend}; //< image provider for projects
 };
 
 }  // namespace photoeditor

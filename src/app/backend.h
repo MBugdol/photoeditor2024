@@ -21,6 +21,19 @@ class Backend : public QObject {
    */
   Q_INVOKABLE void openAsNewProject(const QUrl& file_url);
 
+  /**
+   * @brief Returns the project associated with the given name
+   * @param name Name of the project
+   * @return Project associated with the given name
+   */
+  Project getProject(const QString& name);
+  /**
+   * @brief Const-overload of Project::getProject.
+   * @param @param name Name of the project
+   * @return Project associated with the given name
+   */
+  const Project getProject(const QString& name) const;
+
  private:
   void addProjectAsName(const Project& project, const QString& name);
 

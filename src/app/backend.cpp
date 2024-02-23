@@ -25,6 +25,16 @@ void Backend::openAsNewProject(const QUrl &file_url) {
   addProjectAsName(new_project, file_name_no_extension);
 }
 
+Project Backend::getProject(const QString &name) {
+  Q_ASSERT(m_open_projects.contains(name));
+  return m_open_projects.value(name);
+}
+
+const Project Backend::getProject(const QString &name) const {
+  Q_ASSERT(m_open_projects.contains(name));
+  return m_open_projects.value(name);
+}
+
 void Backend::addProjectAsName(const Project &project, const QString &name) {
   QString save_name = name;
   int current_try = 1;
