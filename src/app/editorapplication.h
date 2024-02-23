@@ -3,6 +3,8 @@
 #include <QQmlApplicationEngine>
 #include <memory>
 
+#include "backend.h"
+
 namespace photoeditor {
 
 /**
@@ -33,6 +35,7 @@ class EditorApplication : public QGuiApplication {
   void initializeEngine();  //< initializes and loads app's qml engine
 
   std::unique_ptr<QQmlApplicationEngine> m_engine;  //< app's qml engine
+  Backend m_backend;
 };
 
 }  // namespace photoeditor

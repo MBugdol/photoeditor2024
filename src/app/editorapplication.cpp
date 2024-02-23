@@ -15,6 +15,9 @@ void EditorApplication::initializeEngine() {
       m_engine.get(), &QQmlApplicationEngine::objectCreationFailed,
       QCoreApplication::instance(), []() { QCoreApplication::exit(1); },
       Qt::QueuedConnection);
+  m_engine->setInitialProperties({
+      {"backend", QVariant::fromValue(&m_backend)},
+  });
   m_engine->load(url);
 }
 

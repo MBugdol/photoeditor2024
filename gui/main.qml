@@ -5,6 +5,9 @@ import QtQuick.Controls.Material
 ApplicationWindow {
     id: root
 
+    // TODO: convert to type-safe declaration when QTBUG-122702 is resolved
+    required property var backend
+
     title: qsTr("Photo editor")
     width: 400
     height: 400
