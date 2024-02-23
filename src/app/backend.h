@@ -22,6 +22,8 @@ class Backend : public QObject {
   Q_INVOKABLE void openAsNewProject(const QUrl& file_url);
 
  private:
+  void addProjectAsName(const Project& project, const QString& name);
+
   QHash<QString, Project>
       m_open_projects;  //< contains open projects mapped by their names
 };
