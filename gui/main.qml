@@ -73,7 +73,7 @@ ApplicationWindow {
             title: qsTr("Select the image to open")
             fileMode: FileDialog.OpenFile
             folder: StandardPaths.standardLocations(StandardPaths.PicturesLocation)[0]
-            onAccepted: backend.openAsNewProject(fileDialog.selectedFile)
+            onAccepted: backend.openAsNewProject(fileDialog.file)
         }
 
     }
