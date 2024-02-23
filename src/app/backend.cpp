@@ -23,6 +23,7 @@ void Backend::openAsNewProject(const QUrl &file_url) {
 
   const QString file_name_no_extension = QFileInfo{file_url.fileName()}.baseName();
   addProjectAsName(new_project, file_name_no_extension);
+  emit openProjectsChanged();
 }
 
 Project Backend::getProject(const QString &name) {
@@ -33,6 +34,10 @@ Project Backend::getProject(const QString &name) {
 const Project Backend::getProject(const QString &name) const {
   Q_ASSERT(m_open_projects.contains(name));
   return m_open_projects.value(name);
+}
+
+QStringList Backend::getOpenProjects() const {
+  return m_open_projects.keys();
 }
 
 void Backend::addProjectAsName(const Project &project, const QString &name) {

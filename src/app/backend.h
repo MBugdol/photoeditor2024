@@ -12,6 +12,8 @@ namespace photoeditor {
  */
 class Backend : public QObject {
   Q_OBJECT
+  Q_PROPERTY(
+      QStringList openProjects READ getOpenProjects NOTIFY openProjectsChanged)
  public:
   explicit Backend(QObject* parent = nullptr);
 
@@ -29,10 +31,15 @@ class Backend : public QObject {
   Project getProject(const QString& name);
   /**
    * @brief Const-overload of Project::getProject.
-   * @param @param name Name of the project
+   * @param name Name of the project
    * @return Project associated with the given name
    */
   const Project getProject(const QString& name) const;
+
+  Q_INVOKABLE QStringList getOpenProjects() const;
+
+ signals:
+  void openProjectsChanged();
 
  private:
   void addProjectAsName(const Project& project, const QString& name);

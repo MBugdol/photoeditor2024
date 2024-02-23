@@ -10,12 +10,22 @@ ApplicationWindow {
 
     // TODO: convert to type-safe declaration when QTBUG-122702 is resolved
     required property var backend
+    required property var appState
 
     title: qsTr("Photo editor")
     width: 400
     height: 400
     visible: true
     Material.theme: Material.System
+
+    Connections {
+        target: root.backend
+        function onOpenProjectsChanged() {
+            let open_projects = root.backend.openProjects
+            image.source = "image://project/" + open_projects[open_projects.length - 1]
+            console.log(image.source)
+        }
+    }
 
     Flickable {
         id: mainFlickable
@@ -49,7 +59,7 @@ ApplicationWindow {
             Image {
                 id: image
 
-                source: "qrc:/editor/gui/img/qt_logo.svg"
+                source: ""
                 cache: false
                 fillMode: Image.Pad
                 anchors.centerIn: parent

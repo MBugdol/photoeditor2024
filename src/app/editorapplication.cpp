@@ -3,7 +3,7 @@
 namespace photoeditor {
 
 EditorApplication::EditorApplication(int &argc, char **argv)
-    : QApplication{argc, argv} {
+    : QApplication{argc, argv}, m_project_img_provider{&m_backend}, m_app_state{&m_backend} {
   initializeEngine();
 }
 
@@ -18,9 +18,9 @@ void EditorApplication::initializeEngine() {
 
   m_engine->addImageProvider("project", &m_project_img_provider);
 
-  m_engine->setInitialProperties({
-      {"backend", QVariant::fromValue(&m_backend)},
-  });
+  m_engine->setInitialProperties(
+      {{"backend", QVariant::fromValue(&m_backend)},
+       {"appState", QVariant::fromValue(&m_app_state)}});
   m_engine->load(url);
 }
 

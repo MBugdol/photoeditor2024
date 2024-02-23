@@ -10,6 +10,8 @@ target_sources(PhotoEditorApp PRIVATE
     ${SOURCEDIR}/editorapplication.h
     ${SOURCEDIR}/backend.cpp
     ${SOURCEDIR}/backend.h
+    ${SOURCEDIR}/appstate.cpp
+    ${SOURCEDIR}/appstate.h
     ${SOURCEDIR}/project/project.cpp
     ${SOURCEDIR}/project/project.h
     ${SOURCEDIR}/project/projectimageprovider.cpp
