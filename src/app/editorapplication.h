@@ -1,5 +1,5 @@
 #pragma once
-#include <QGuiApplication>
+#include <QApplication>
 #include <QQmlApplicationEngine>
 #include <memory>
 
@@ -18,7 +18,7 @@ namespace photoeditor {
  * (see
  * https://doc.qt.io/qt-6/qcoreapplication.html#the-event-loop-and-event-handling).
  */
-class EditorApplication : public QGuiApplication {
+class EditorApplication : public QApplication {
   Q_OBJECT
  public:
   /**

@@ -19,7 +19,7 @@ class Backend : public QObject {
    * @brief Creates a new project based on the specified file.
    * @param file_url URL of the file to base project on
    */
-  void openAsNewProject(const QUrl& file_url);
+  Q_INVOKABLE void openAsNewProject(const QUrl& file_url);
 
  private:
   QHash<QString, Project>

@@ -1,6 +1,9 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Controls.Material
+import QtQuick.Dialogs
+import Qt.labs.platform as QtLabs
+import QtCore
 
 ApplicationWindow {
     id: root
@@ -64,9 +67,19 @@ ApplicationWindow {
             }
         }
 
+        QtLabs.FileDialog {
+            id: fileDialog
+
+            title: qsTr("Select the image to open")
+            fileMode: FileDialog.OpenFile
+            folder: StandardPaths.standardLocations(StandardPaths.PicturesLocation)[0]
+            onAccepted: backend.openAsNewProject(fileDialog.selectedFile)
+        }
+
     }
 
     header: AppMenuBar {
+        onOpenRequested: fileDialog.open()
     }
 
 }

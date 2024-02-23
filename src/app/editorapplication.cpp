@@ -3,7 +3,7 @@
 namespace photoeditor {
 
 EditorApplication::EditorApplication(int &argc, char **argv)
-    : QGuiApplication{argc, argv} {
+    : QApplication{argc, argv} {
   initializeEngine();
 }
 

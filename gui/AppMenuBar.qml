@@ -5,6 +5,8 @@ import QtQuick.Layouts
 MenuBar {
     id: root
 
+    signal openRequested()
+
     AppMenu {
         id: fileMenu
 
@@ -12,6 +14,7 @@ MenuBar {
 
         AppMenuItem {
             text: qsTr("&Open")
+            onTriggered: root.openRequested()
         }
 
         AppMenuItem {
