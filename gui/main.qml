@@ -5,6 +5,8 @@ import QtQuick.Dialogs
 import Qt.labs.platform as QtLabs
 import QtCore
 
+import editor.gui
+
 ApplicationWindow {
     id: root
 

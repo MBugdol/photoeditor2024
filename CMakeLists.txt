@@ -22,6 +22,6 @@ target_link_libraries(PhotoEditorApp PRIVATE
     Qt6::Quick
     Qt6::Gui
     Qt6::Widgets # used by Qt.labs.platform QML module
-    PhotoEditorGui
+    PhotoEditorGuiplugin # TODO: link to target instead of plugin when QTBUG-122716 is resolved
 )
 
