@@ -24,7 +24,7 @@ class Backend : public QObject {
   Q_INVOKABLE void openAsNewProject(const QUrl& file_url);
 
   /**
-   * @brief Returns the project associated with the given name
+   * @brief Returns the project associated with the g iven name
    * @param name Name of the project
    * @return Project associated with the given name
    */
@@ -40,6 +40,11 @@ class Backend : public QObject {
 
  signals:
   void openProjectsChanged();
+  /**
+   * @brief Emitted if an error occurred.
+   * @param error_message Message describing the encountered error.
+   */
+  void errorOccurred(const QString& error_message);
 
  private:
   void addProjectAsName(const Project& project, const QString& name);

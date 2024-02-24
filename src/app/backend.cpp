@@ -14,7 +14,7 @@ void Backend::openAsNewProject(const QUrl &file_url) {
 
   if (image.isNull()) {
     qWarning() << "Failed to open image" << file_url.toLocalFile();
-    // TODO(MBugdol): emit error
+    emit errorOccurred(tr("Failed to open the specified file!"));
     return;
   }
 

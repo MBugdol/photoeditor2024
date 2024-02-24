@@ -26,6 +26,10 @@ ApplicationWindow {
             console.log(image.source);
         }
 
+        function onErrorOccurred(errorMsg: string) {
+            errorDialog.openWithText(errorMsg);
+        }
+
         target: root.backend
     }
 
@@ -79,15 +83,28 @@ ApplicationWindow {
             }
         }
 
-        QtLabs.FileDialog {
-            id: fileDialog
+    }
 
-            title: qsTr("Select the image to open")
-            fileMode: FileDialog.OpenFile
-            folder: StandardPaths.standardLocations(StandardPaths.PicturesLocation)[0]
-            onAccepted: backend.openAsNewProject(fileDialog.file)
+    QtLabs.FileDialog {
+        id: fileDialog
+
+        title: qsTr("Select the image to open")
+        fileMode: FileDialog.OpenFile
+        folder: StandardPaths.standardLocations(StandardPaths.PicturesLocation)[0]
+        onAccepted: backend.openAsNewProject(fileDialog.file)
+    }
+
+    QtLabs.MessageDialog {
+        id: errorDialog
+
+        function openWithText(new_text: string) {
+            text = new_text;
+            open();
         }
 
+        buttons: QtLabs.MessageDialog.Ok
+        text: ""
+        title: qsTr("Error")
     }
 
     header: AppMenuBar {
