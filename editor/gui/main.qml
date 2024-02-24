@@ -4,7 +4,6 @@ import QtQuick.Controls.Material
 import QtQuick.Dialogs
 import Qt.labs.platform as QtLabs
 import QtCore
-
 import editor.gui
 
 ApplicationWindow {
@@ -21,12 +20,13 @@ ApplicationWindow {
     Material.theme: Material.System
 
     Connections {
-        target: root.backend
         function onOpenProjectsChanged() {
-            let open_projects = root.backend.openProjects
-            image.source = "image://project/" + open_projects[open_projects.length - 1]
-            console.log(image.source)
+            let open_projects = root.backend.openProjects;
+            image.source = "image://project/" + open_projects[open_projects.length - 1];
+            console.log(image.source);
         }
+
+        target: root.backend
     }
 
     Flickable {
