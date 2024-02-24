@@ -2,6 +2,9 @@
  
 A 2024 remake of my 2022 photo editor
 
+## Windows notice
+The project didn't work on Windows due to QTBUG-122716. I have now temporarily fixed the project until the bug is resolved, so if the project didn't work for you, it should now.
+
 ## Bug hunt
 If I had a nickel for each QML bug I found while working on this project, I'd have {bugs.count} nickels... 
 
