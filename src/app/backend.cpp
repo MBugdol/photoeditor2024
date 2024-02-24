@@ -10,10 +10,10 @@ namespace photoeditor {
 Backend::Backend(QObject *parent) : QObject{parent} {}
 
 void Backend::openAsNewProject(const QUrl &file_url) {
-  const QImage image{file_url.path()};
+  const QImage image{file_url.toLocalFile()};
 
   if (image.isNull()) {
-    qWarning() << "Failed to open image" << file_url.path();
+    qWarning() << "Failed to open image" << file_url.toLocalFile();
     // TODO(MBugdol): emit error
     return;
   }
