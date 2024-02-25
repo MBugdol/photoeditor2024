@@ -63,56 +63,72 @@ ApplicationWindow {
 
         }
 
-        Flickable {
-            id: mainFlickable
-
-            function center() {
-                contentX = (contentWidth - width) / 2;
-                contentY = (contentHeight - height) / 2;
-            }
-
+        Item {
+            id: workspaceItem
             SplitView.preferredWidth: parent.width * 0.8
             SplitView.minimumWidth: parent.width * 0.3
             SplitView.fillWidth: true
             clip: true
-            contentWidth: workspace.width
-            contentHeight: workspace.height
-            boundsBehavior: Flickable.StopAtBounds
-            Component.onCompleted: center()
-
-            Connections {
-                function onImageCenteringRequested() {
-                    mainFlickable.center();
-                }
-
-                target: EditorState
+            Image {
+                id: backgroundMesh
+                readonly property int targetCellWidthMm: 10
+                readonly property int imagePixelSize: 8
+                source: "qrc:/editor/gui/img/cm_mesh.png"
+                fillMode: Image.Tile
+                anchors.fill: parent
+                smooth: false
+                scale: (Screen.pixelDensity * targetCellWidthMm / imagePixelSize)
             }
 
-            Item {
-                id: workspace
+            Flickable {
+                id: mainFlickable
 
-                width: 2 * mainFlickable.width
-                height: 2 * mainFlickable.height
-
-                Image {
-                    id: image
-
-                    source: ""
-                    cache: false
-                    fillMode: Image.Pad
-                    anchors.centerIn: parent
-                    scale: EditorState.zoom / 100
+                function center() {
+                    contentX = (contentWidth - width) / 2;
+                    contentY = (contentHeight - height) / 2;
                 }
 
-            }
+                anchors.fill: parent
+                clip: true
+                contentWidth: previewCOntainerItem.width
+                contentHeight: previewCOntainerItem.height
+                boundsBehavior: Flickable.StopAtBounds
 
-            WheelHandler {
-                id: workspaceZoom
+                Connections {
+                    function onImageCenteringRequested() {
+                        mainFlickable.center();
+                    }
 
-                acceptedModifiers: Qt.ControlModifier
-                onWheel: (event) => {
-                    EditorState.zoom += Math.sign(event.angleDelta.y) * 5;
+                    target: EditorState
                 }
+
+                Item {
+                    id: previewCOntainerItem
+
+                    width: 2 * mainFlickable.width
+                    height: 2 * mainFlickable.height
+
+                    Image {
+                        id: image
+
+                        source: ""
+                        cache: false
+                        fillMode: Image.Pad
+                        anchors.centerIn: parent
+                        scale: EditorState.zoom / 100
+                    }
+
+                }
+
+                WheelHandler {
+                    id: workspaceZoom
+
+                    acceptedModifiers: Qt.ControlModifier
+                    onWheel: (event) => {
+                                 EditorState.zoom += Math.sign(event.angleDelta.y) * 5;
+                             }
+                }
+
             }
 
         }

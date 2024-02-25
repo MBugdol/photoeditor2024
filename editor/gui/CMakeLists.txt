@@ -12,5 +12,5 @@ qt_add_qml_module(PhotoEditorGui
         editorstate.h
         editorstate.cpp
     RESOURCES
-        img/qt_logo.svg
+        img/cm_mesh.png
 )
