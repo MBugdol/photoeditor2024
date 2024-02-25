@@ -22,8 +22,8 @@ ApplicationWindow {
     Connections {
         function onOpenProjectsChanged() {
             let open_projects = root.backend.openProjects;
-            image.source = "image://project/" + open_projects[open_projects.length - 1];
-            mainFlickable.center();
+            preview.source = "image://project/" + open_projects[open_projects.length - 1];
+            workspaceImageFlickable.center();
         }
 
         function onErrorOccurred(errorMsg: string) {
@@ -39,7 +39,7 @@ ApplicationWindow {
         anchors.fill: parent
 
         Rectangle {
-            id: leftToolbar
+            id: leftSidebar
 
             SplitView.minimumWidth: 0.1 * parent.width
             color: "blue"
@@ -55,7 +55,7 @@ ApplicationWindow {
 
             Connections {
                 function onLeftSidebarToggleRequested() {
-                    leftToolbar.visible = !leftToolbar.visible;
+                    leftSidebar.visible = !leftSidebar.visible;
                 }
 
                 target: EditorState
@@ -72,7 +72,7 @@ ApplicationWindow {
             clip: true
 
             Image {
-                id: backgroundMesh
+                id: workspaceBackground
 
                 readonly property int targetCellWidthMm: 10
                 readonly property int imagePixelSize: 8
@@ -85,7 +85,7 @@ ApplicationWindow {
             }
 
             Flickable {
-                id: mainFlickable
+                id: workspaceImageFlickable
 
                 function center() {
                     contentX = (contentWidth - width) / 2;
@@ -94,26 +94,26 @@ ApplicationWindow {
 
                 anchors.fill: parent
                 clip: true
-                contentWidth: previewCOntainerItem.width
-                contentHeight: previewCOntainerItem.height
+                contentWidth: previewContainerItem.width
+                contentHeight: previewContainerItem.height
                 boundsBehavior: Flickable.StopAtBounds
 
                 Connections {
                     function onImageCenteringRequested() {
-                        mainFlickable.center();
+                        workspaceImageFlickable.center();
                     }
 
                     target: EditorState
                 }
 
                 Item {
-                    id: previewCOntainerItem
+                    id: previewContainerItem
 
-                    width: 2 * mainFlickable.width
-                    height: 2 * mainFlickable.height
+                    width: 2 * workspaceImageFlickable.width
+                    height: 2 * workspaceImageFlickable.height
 
                     Image {
-                        id: image
+                        id: preview
 
                         source: ""
                         cache: false
@@ -138,7 +138,7 @@ ApplicationWindow {
         }
 
         Rectangle {
-            id: rightToolbar
+            id: rightSidebar
 
             SplitView.minimumWidth: 0.1 * parent.width
             color: "red"
@@ -155,7 +155,7 @@ ApplicationWindow {
 
             Connections {
                 function onRightSidebarToggleRequested() {
-                    rightToolbar.visible = !rightToolbar.visible;
+                    rightSidebar.visible = !rightSidebar.visible;
                 }
 
                 target: EditorState
