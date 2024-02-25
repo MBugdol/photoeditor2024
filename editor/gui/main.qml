@@ -65,14 +65,18 @@ ApplicationWindow {
 
         Item {
             id: workspaceItem
+
             SplitView.preferredWidth: parent.width * 0.8
             SplitView.minimumWidth: parent.width * 0.3
             SplitView.fillWidth: true
             clip: true
+
             Image {
                 id: backgroundMesh
+
                 readonly property int targetCellWidthMm: 10
                 readonly property int imagePixelSize: 8
+
                 source: "qrc:/editor/gui/img/cm_mesh.png"
                 fillMode: Image.Tile
                 anchors.fill: parent
@@ -125,8 +129,8 @@ ApplicationWindow {
 
                     acceptedModifiers: Qt.ControlModifier
                     onWheel: (event) => {
-                                 EditorState.zoom += Math.sign(event.angleDelta.y) * 5;
-                             }
+                        EditorState.zoom += Math.sign(event.angleDelta.y) * 5;
+                    }
                 }
 
             }
