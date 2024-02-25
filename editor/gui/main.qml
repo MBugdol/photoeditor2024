@@ -23,7 +23,7 @@ ApplicationWindow {
         function onOpenProjectsChanged() {
             let open_projects = root.backend.openProjects;
             image.source = "image://project/" + open_projects[open_projects.length - 1];
-            console.log(image.source);
+            mainFlickable.center();
         }
 
         function onErrorOccurred(errorMsg: string) {
@@ -33,54 +33,114 @@ ApplicationWindow {
         target: root.backend
     }
 
-    Flickable {
-        id: mainFlickable
-
-        function center() {
-            contentX = (contentWidth - width) / 2;
-            contentY = (contentHeight - height) / 2;
-        }
+    SplitView {
+        id: workspaceSidebarSplit
 
         anchors.fill: parent
-        clip: true
-        contentWidth: workspace.width
-        contentHeight: workspace.height
-        boundsBehavior: Flickable.StopAtBounds
-        Component.onCompleted: center()
 
-        Connections {
-            function onImageCenteringRequested() {
-                mainFlickable.center();
-            }
+        Rectangle {
+            id: leftToolbar
 
-            target: EditorState
-        }
+            SplitView.minimumWidth: 0.1 * parent.width
+            color: "blue"
 
-        Item {
-            id: workspace
-
-            width: 2 * mainFlickable.width
-            height: 2 * mainFlickable.height
-
-            Image {
-                id: image
-
-                source: ""
-                cache: false
-                fillMode: Image.Pad
+            Label {
                 anchors.centerIn: parent
-                scale: EditorState.zoom / 100
+                width: Math.min(implicitWidth, parent.width)
+                elide: Text.ElideRight
+                wrapMode: Text.Wrap
+                horizontalAlignment: Text.AlignHCenter
+                text: "Left sidebar placeholder"
+            }
+
+            Connections {
+                function onLeftSidebarToggleRequested() {
+                    leftToolbar.visible = !leftToolbar.visible;
+                }
+
+                target: EditorState
             }
 
         }
 
-        WheelHandler {
-            id: workspaceZoom
+        Flickable {
+            id: mainFlickable
 
-            acceptedModifiers: Qt.ControlModifier
-            onWheel: (event) => {
-                EditorState.zoom += Math.sign(event.angleDelta.y) * 5;
+            function center() {
+                contentX = (contentWidth - width) / 2;
+                contentY = (contentHeight - height) / 2;
             }
+
+            SplitView.preferredWidth: parent.width * 0.8
+            SplitView.minimumWidth: parent.width * 0.3
+            SplitView.fillWidth: true
+            clip: true
+            contentWidth: workspace.width
+            contentHeight: workspace.height
+            boundsBehavior: Flickable.StopAtBounds
+            Component.onCompleted: center()
+
+            Connections {
+                function onImageCenteringRequested() {
+                    mainFlickable.center();
+                }
+
+                target: EditorState
+            }
+
+            Item {
+                id: workspace
+
+                width: 2 * mainFlickable.width
+                height: 2 * mainFlickable.height
+
+                Image {
+                    id: image
+
+                    source: ""
+                    cache: false
+                    fillMode: Image.Pad
+                    anchors.centerIn: parent
+                    scale: EditorState.zoom / 100
+                }
+
+            }
+
+            WheelHandler {
+                id: workspaceZoom
+
+                acceptedModifiers: Qt.ControlModifier
+                onWheel: (event) => {
+                    EditorState.zoom += Math.sign(event.angleDelta.y) * 5;
+                }
+            }
+
+        }
+
+        Rectangle {
+            id: rightToolbar
+
+            SplitView.minimumWidth: 0.1 * parent.width
+            color: "red"
+
+            Label {
+                anchors.centerIn: parent
+                clip: true
+                width: Math.min(implicitWidth, parent.width)
+                elide: Text.ElideRight
+                wrapMode: Text.Wrap
+                text: "Right sidebar placeholder"
+                horizontalAlignment: Text.AlignHCenter
+            }
+
+            Connections {
+                function onRightSidebarToggleRequested() {
+                    rightToolbar.visible = !rightToolbar.visible;
+                }
+
+                target: EditorState
+            }
+
         }
 
     }

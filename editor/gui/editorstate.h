@@ -16,10 +16,17 @@ class EditorState : public QObject {
 
   Q_INVOKABLE void centerImage();
 
+  Q_INVOKABLE void toggleLeftSidebar();
+  Q_INVOKABLE void toggleRightSidebar();
+
  signals:
   void zoomChanged();
+
+  void leftSidebarToggleRequested();
+  void rightSidebarToggleRequested();
+
   void imageCenteringRequested();
 
  private:
-  int _zoom = 100;
+  int m_zoom = 100;
 };

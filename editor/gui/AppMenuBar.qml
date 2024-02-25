@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Controls.Material
 import QtQuick.Layouts
+import editor.gui
 
 MenuBar {
     id: root
@@ -45,6 +46,16 @@ MenuBar {
         id: viewMenu
 
         title: qsTr("&View")
+
+        AppMenuItem {
+            text: qsTr("Toggle &left sidebar")
+            onTriggered: EditorState.toggleLeftSidebar()
+        }
+
+        AppMenuItem {
+            text: qsTr("Toggle &right sidebar")
+            onTriggered: EditorState.toggleRightSidebar()
+        }
 
         AppMenuItem {
             text: qsTr("&Center image")
