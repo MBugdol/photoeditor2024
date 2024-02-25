@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.28)
 project(PhotoEditor VERSION 2.0)
 
 # Qt supports defining QML modules in CMake from Qt6.2 onwards
-find_package(Qt6 6.2 COMPONENTS
+find_package(Qt6 6.4 COMPONENTS
     Quick
     Gui
     Widgets
