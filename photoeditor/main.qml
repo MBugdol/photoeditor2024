@@ -4,7 +4,7 @@ import QtQuick.Controls.Material
 import QtQuick.Dialogs
 import Qt.labs.platform as QtLabs
 import QtCore
-import editor.gui
+import photoeditor
 
 ApplicationWindow {
     id: root
@@ -77,7 +77,7 @@ ApplicationWindow {
                 readonly property int targetCellWidthMm: 10
                 readonly property int imagePixelSize: 8
 
-                source: "qrc:/editor/gui/img/cm_mesh.png"
+                source: "qrc:/photoeditor/img/cm_mesh.png"
                 fillMode: Image.Tile
                 anchors.fill: parent
                 smooth: false

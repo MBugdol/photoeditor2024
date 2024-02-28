@@ -15,8 +15,8 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 qt_add_executable(PhotoEditorApp)
-add_subdirectory(src/app)
-add_subdirectory(editor/gui)
+add_subdirectory(lib)
+add_subdirectory(photoeditor)
 
 target_link_libraries(PhotoEditorApp PRIVATE
     Qt6::Quick

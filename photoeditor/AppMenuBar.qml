@@ -2,7 +2,7 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Controls.Material
 import QtQuick.Layouts
-import editor.gui
+import photoeditor
 
 MenuBar {
     id: root
