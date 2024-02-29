@@ -2,7 +2,7 @@
 
 #include <QObject>
 
-#include "backend.h"
+#include <photoeditortools/backend.h>
 
 namespace photoeditor {
 

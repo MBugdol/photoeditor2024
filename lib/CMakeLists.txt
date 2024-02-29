@@ -1,11 +1,12 @@
 cmake_minimum_required(VERSION 3.28)
 
-set(SOURCEDIR ${CMAKE_CURRENT_SOURCE_DIR})
+qt_add_library(PhotoEditorTools)
 
-target_include_directories(PhotoEditorApp PRIVATE ${SOURCEDIR})
+set(SOURCEDIR "${CMAKE_CURRENT_SOURCE_DIR}/photoeditortools")
 
-target_sources(PhotoEditorApp PRIVATE
-    ${SOURCEDIR}/main.cpp
+target_include_directories(PhotoEditorTools PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+
+target_sources(PhotoEditorTools PRIVATE
     ${SOURCEDIR}/editorapplication.cpp
     ${SOURCEDIR}/editorapplication.h
     ${SOURCEDIR}/backend.cpp
@@ -16,4 +17,10 @@ target_sources(PhotoEditorApp PRIVATE
     ${SOURCEDIR}/project/project.h
     ${SOURCEDIR}/project/projectimageprovider.cpp
     ${SOURCEDIR}/project/projectimageprovider.h
+)
+
+target_link_libraries(PhotoEditorTools PRIVATE
+    Qt6::Gui
+    Qt6::Quick
+    Qt6::Widgets
 )

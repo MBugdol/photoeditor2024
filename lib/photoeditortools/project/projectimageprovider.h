@@ -1,7 +1,7 @@
 #pragma once
 
 #include <QQuickImageProvider>
-#include "backend.h"
+#include <photoeditortools/backend.h>
 
 namespace photoeditor {
 

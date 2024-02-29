@@ -1,4 +1,4 @@
-#include "editorapplication.h"
+#include <photoeditortools/editorapplication.h>
 
 #include <QQmlContext>
 

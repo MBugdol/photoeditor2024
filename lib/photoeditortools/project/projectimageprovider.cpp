@@ -2,7 +2,7 @@
 
 #include <QDebug>
 
-#include "project/project.h"
+#include <photoeditortools/project/project.h>
 
 namespace photoeditor {
 

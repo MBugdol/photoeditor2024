@@ -3,7 +3,7 @@
 #include <QHash>
 #include <QObject>
 
-#include "project/project.h"
+#include <photoeditortools/project/project.h>
 
 namespace photoeditor {
 

@@ -3,9 +3,9 @@
 #include <QQmlApplicationEngine>
 #include <memory>
 
-#include "backend.h"
-#include "project/projectimageprovider.h"
-#include "appstate.h"
+#include <photoeditortools/backend.h>
+#include <photoeditortools/project/projectimageprovider.h>
+#include <photoeditortools/appstate.h>
 
 namespace photoeditor {
 
