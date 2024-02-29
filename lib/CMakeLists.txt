@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.28)
 
-qt_add_library(PhotoEditorTools)
+qt_add_library(PhotoEditorTools STATIC)
 
 set(SOURCEDIR "${CMAKE_CURRENT_SOURCE_DIR}/photoeditortools")
 
