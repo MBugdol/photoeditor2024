@@ -14,7 +14,9 @@ class Project : public QObject {
  public:
   explicit Project(QObject* parent = nullptr);
   Project(const Project& other);
-  Project& operator=(const Project& other);
+  Project& operator=(Project other);
+
+  friend void swap(Project& l, Project& r);
 
   /**
    * @brief Returns a complete preview of the project's image.

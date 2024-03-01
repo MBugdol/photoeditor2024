@@ -8,9 +8,13 @@ Project::Project(QObject *parent) : QObject{parent} {}
 
 Project::Project(const Project &other) : m_layers{other.m_layers} {}
 
-Project &Project::operator=(const Project &other) {
-  *this = Project{other};
+Project &Project::operator=(Project other) {
+  std::swap(*this, other);
   return *this;
+}
+
+void swap(Project& l, Project& r) {
+  std::swap(l.m_layers, r.m_layers);
 }
 
 QImage Project::getPreview() const {
