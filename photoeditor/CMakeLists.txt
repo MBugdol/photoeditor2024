@@ -9,11 +9,18 @@ set(QML
 
 set(SOURCES
     main.cpp
-    editorstate.cpp
-)
-
-set(HEADERS
-    editorstate.h
+    src/editorstate.cpp
+    src/editorstate.h
+    src/appstate.cpp
+    src/appstate.h
+    src/backend.cpp
+    src/backend.h
+    src/editorapplication.cpp
+    src/editorapplication.h
+    src/project/project.cpp
+    src/project/project.h
+    src/project/projectimageprovider.cpp
+    src/project/projectimageprovider.h
 )
 
 set(IMAGES
@@ -28,14 +35,14 @@ qt_add_qml_module(PhotoEditorApp
         ${QML}
     SOURCES
         ${SOURCES}
-        ${HEADERS}
     RESOURCES
         ${IMAGES}
 )
+
+target_include_directories(PhotoEditorApp PUBLIC src)
 
 target_link_libraries(PhotoEditorApp PRIVATE
     Qt6::Quick
     Qt6::Gui
     Qt6::Widgets # used by Qt.labs.platform QML module
-    PhotoEditorTools
 )

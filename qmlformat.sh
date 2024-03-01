@@ -1,2 +1,2 @@
 #!/bin/sh
-qmlformat -i -n ./editor/gui/*.qml
+qmlformat -i -n $(find . -name "*.qml")
