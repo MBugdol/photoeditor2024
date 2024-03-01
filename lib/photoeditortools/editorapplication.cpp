@@ -9,7 +9,7 @@ EditorApplication::EditorApplication(int &argc, char **argv)
 
 void EditorApplication::initializeEngine() {
   m_engine = std::make_unique<QQmlApplicationEngine>();
-  const QUrl url{u"qrc:/photoeditor/main.qml"_qs};
+  const QUrl url{u"qrc:/main.qml"_qs};
 
   QObject::connect(
       m_engine.get(), &QQmlApplicationEngine::objectCreationFailed,

@@ -1,20 +1,36 @@
 cmake_minimum_required(VERSION 3.28)
 
 qt_add_executable(PhotoEditorApp)
-target_sources(PhotoEditorApp PRIVATE main.cpp)
+
+set(QML
+    main.qml
+    qml/AppMenuBar.qml
+)
+
+set(SOURCES
+    main.cpp
+    editorstate.cpp
+)
+
+set(HEADERS
+    editorstate.h
+)
+
+set(IMAGES
+    img/cm_mesh.png
+)
 
 qt_add_qml_module(PhotoEditorApp
     URI photoeditor
     VERSION 1.0
-    RESOURCE_PREFIX / # this is a module internal to this project; no need for special prefix
+    NO_RESOURCE_TARGET_PATH
     QML_FILES
-        main.qml
-        AppMenuBar.qml
+        ${QML}
     SOURCES
-        editorstate.h
-        editorstate.cpp
+        ${SOURCES}
+        ${HEADERS}
     RESOURCES
-        img/cm_mesh.png
+        ${IMAGES}
 )
 
 target_link_libraries(PhotoEditorApp PRIVATE
