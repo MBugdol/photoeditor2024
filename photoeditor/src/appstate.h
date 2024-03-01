@@ -13,6 +13,7 @@ namespace photoeditor {
 class AppState : public QObject {
   Q_OBJECT
   QML_ELEMENT
+  QML_UNCREATABLE("")
  public:
   explicit AppState(const Backend* backend, QObject* parent = nullptr);
 

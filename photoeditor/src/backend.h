@@ -16,6 +16,7 @@ class Backend : public QObject {
   Q_PROPERTY(
       QStringList openProjects READ getOpenProjects NOTIFY openProjectsChanged)
   QML_ELEMENT
+  QML_UNCREATABLE("")
  public:
   explicit Backend(QObject* parent = nullptr);
 
