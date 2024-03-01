@@ -1,6 +1,7 @@
 #pragma once
 
 #include <QObject>
+#include <QtQml>
 
 #include <backend.h>
 
@@ -11,6 +12,7 @@ namespace photoeditor {
  */
 class AppState : public QObject {
   Q_OBJECT
+  QML_ELEMENT
  public:
   explicit AppState(const Backend* backend, QObject* parent = nullptr);
 

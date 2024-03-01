@@ -9,9 +9,8 @@ import photoeditor
 ApplicationWindow {
     id: root
 
-    // TODO: convert to type-safe declaration when QTBUG-122702 is resolved
-    required property var backend
-    required property var appState
+    required property Backend backend
+    required property AppState appState
 
     title: qsTr("Photo editor")
     width: 400

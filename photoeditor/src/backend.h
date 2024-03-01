@@ -2,6 +2,7 @@
 
 #include <QHash>
 #include <QObject>
+#include <QtQml>
 
 #include <project/project.h>
 
@@ -14,6 +15,7 @@ class Backend : public QObject {
   Q_OBJECT
   Q_PROPERTY(
       QStringList openProjects READ getOpenProjects NOTIFY openProjectsChanged)
+  QML_ELEMENT
  public:
   explicit Backend(QObject* parent = nullptr);
 
