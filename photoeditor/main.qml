@@ -76,7 +76,7 @@ ApplicationWindow {
                 readonly property int targetCellWidthMm: 10
                 readonly property int imagePixelSize: 8
 
-                source: "qrc:/img/cm_mesh.png"
+                source: "qrc:/img/mesh.png"
                 fillMode: Image.Tile
                 anchors.fill: parent
                 smooth: false

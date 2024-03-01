@@ -24,7 +24,7 @@ set(SOURCES
 )
 
 set(IMAGES
-    img/cm_mesh.png
+    img/mesh.png
 )
 
 qt_add_qml_module(PhotoEditorApp
